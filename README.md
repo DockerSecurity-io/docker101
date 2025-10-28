@@ -48,3 +48,8 @@ This book is:
 
 All digital formats are free under the **CC BY-SA 4.0** license.  
 Purchasing the print version helps fund ongoing community work and printing costs.
+
+### 🤝 Contributing
+
+Contributions are welcome!  
+See the [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on how to get involved.
