@@ -1,0 +1,79 @@
+/* ===========================
+   EPUB fixes for Pandoc/Skylighting line numbers
+   Safe across iBooks/Apple Books, Kindle apps, Thorium, ADE
+   =========================== */
+
+/* 1) Core gutter + counting (Fix B) */
+pre.numberSource code > span {
+    /* Keep Pandoc’s inline-block per-line layout */
+    display: inline-block !important;
+    position: relative !important;
+
+    /* Neutralize default left shift and create a clean gutter */
+    left: 0 !important;
+    padding-left: 3.75em !important;  /* adjust if you want a wider/narrower gutter */
+    text-indent: 0 !important;
+
+    /* Increment the line counter once per logical line */
+    counter-increment: source-line !important;
+
+    /* Consistent line boxes */
+    line-height: 1.25 !important;
+    vertical-align: top;
+}
+
+/* Render the number in the gutter (tie it to the span’s box) */
+pre.numberSource code > span::before {
+    position: absolute !important;
+    content: counter(source-line);
+    left: 0;
+    top: 0;
+    height: 100%;
+    line-height: inherit;
+    width: 3.25em;          /* slightly less than padding-left */
+    text-align: right;
+    padding-right: 0.5em;
+    color: #9aa0a6;         /* subtle grey */
+    text-decoration: none !important;
+    pointer-events: none;
+}
+
+/* Hide Pandoc’s default anchor-based number to avoid duplicates */
+pre.numberSource code > span > a:first-child::before {
+    display: none !important;
+}
+
+/* 2) Blank line alignment:
+   - Remove fixed height on empty spans
+   - Synthesize a real line box so numbers align perfectly */
+pre > code.sourceCode > span:empty {
+    height: auto !important;
+}
+pre > code.sourceCode > span:empty::after {
+    content: "\00a0";       /* non-breaking space creates the line box */
+    line-height: inherit;
+    display: inline;
+}
+
+/* 3) Optional aesthetics (remove Pandoc’s left border/margin gutter) */
+pre.numberSource {
+    margin-left: 0 !important;
+    border-left: none !important;
+    padding-left: 0 !important;
+}
+
+/* 4) Wrapping that won’t invade the gutter */
+pre > code.sourceCode {
+    white-space: pre-wrap !important;
+}
+
+/* 5) Kill underline Pandoc adds for screen media */
+@media screen {
+    pre > code.sourceCode > span > a:first-child::before {
+        text-decoration: none !important;
+    }
+}
+
+/* 6) (Defensive) ensure the counter resets per block.
+      Pandoc already emits this, but keeping it is harmless. */
+pre.numberSource code { counter-reset: source-line 0; }
