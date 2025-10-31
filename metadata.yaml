@@ -1,0 +1,16 @@
+---
+title: Docker and Kubernetes Security
+subtitle: Supply Chain Security & Runtime Protection
+author: Mohammad-Ali A'râbi
+rights: Copyright © 2025 Mohammad-Ali A'râbi
+lang: en-US
+mainlang: english
+otherlang: english
+tags: [pandoc, book, my-book, etc]
+abstract: |
+  Your summary.
+linkReferences: true
+listing-options:
+  smallcode:
+    environment: smallcode
+---
